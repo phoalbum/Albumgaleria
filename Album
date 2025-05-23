@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagen con Información de Permisos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box; /* Incluir padding en el tamaño total */
+        }
+        .image-container {
+            position: relative; /* Contenedor para posicionar elementos dentro */
+            width: 80%; /* Ajusta el ancho de la imagen */
+            max-width: 500px; /* Ancho máximo de la imagen */
+            cursor: pointer; /* Indica que es clicable */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden; /* Asegura que el botón no se desborde */
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .overlay-button {
+            position: absolute;
+            bottom: 10px; /* 10px desde abajo */
+            left: 50%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Ajuste para centrar correctamente */
+            background-color: rgba(0, 123, 255, 0.8); /* Azul semi-transparente */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Evita que el texto se rompa */
+        }
+        .overlay-button:hover {
+            background-color: rgba(0, 123, 255, 1); /* Azul más sólido al pasar el ratón */
+        }
+        #permissionInfo {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            max-width: 600px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.6;
+            display: none; /* Oculto por defecto */
+            text-align: left;
+        }
+        #permissionInfo strong {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Información de Interacción</h1>
+    <p>Haz clic en la imagen o en el botón para saber más sobre los permisos.</p>
+
+    <div class="image-container" id="clickableImage">
+        <img src="https://via.placeholder.com/500x300?text=Haz+Clic+Aqui" alt="Imagen de Ejemplo">
+        <span class="overlay-button">¡Haz clic aquí!</span>
+    </div>
+
+    <div id="permissionInfo">
+        <strong>Sobre el "Acceso Remoto" en Páginas Web:</strong>
+        <p>Esta página web está diseñada para interactuar con tu dispositivo de ciertas maneras, siempre y cuando tú otorgues tu permiso explícito.</p>
+        <p><strong>Lo que una página web PUEDE solicitar (con tu permiso):</strong></p>
+        <ul>
+            <li>Acceso a la <strong>cámara</strong> para tomar fotos o grabar video.</li>
+            <li>Acceso al <strong>micrófono</strong> para grabar audio.</li>
+            <li>Acceso para <strong>compartir tu pantalla</strong> o una ventana específica.</li>
+            <li>Tu <strong>ubicación geográfica</strong> aproximada (basada en GPS o IP).</li>
+            <li>Enviar tu <strong>dirección IP</strong> y detalles de tu dispositivo a un servidor.</li>
+        </ul>
+        <p><strong>Lo que una página web NO PUEDE hacer sin software especial en tu dispositivo:</strong></p>
+        <ul>
+            <li>Acceder a tus archivos personales sin que los selecciones y compartas.</li>
+            <li>Controlar tu dispositivo de forma remota (ej. mover el cursor, abrir aplicaciones) sin tu consentimiento explícito y un software de terceros.</li>
+            <li>Instalar software en tu dispositivo sin tu conocimiento.</li>
+        </ul>
+        <p>Cualquier solicitud de acceso a tu cámara, micrófono, ubicación o pantalla siempre será **solicitada por tu navegador** y requerirá tu **aprobación activa**.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clickableImage = document.getElementById('clickableImage');
+            const permissionInfo = document.getElementById('permissionInfo');
+
+            clickableImage.addEventListener('click', () => {
+                // Alternar la visibilidad de la información de permisos
+                if (permissionInfo.style.display === 'none' || permissionInfo.style.display === '') {
+                    permissionInfo.style.display = 'block'; // Mostrar
+                } else {
+                    permissionInfo.style.display = 'none'; // Ocultar
+                }
+            });
+        </script>
+    </body>
+    </html>
